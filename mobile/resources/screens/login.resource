@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation        Arquivo que representa a págna de Login
+Documentation        Arquivo que representa a tela de Login
 
 Library        AppiumLibrary
 
