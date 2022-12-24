@@ -3,23 +3,42 @@ Documentation        Suite de testes de Login
 
 Resource    ../resources/base.resource
 
-*** Test Cases ***
+Test Setup        Start App
+Test Teardown     Finish App
 
+*** Variables ***
+${error_401}        Acesso não autorizado! Entre em contato com a equipe de atendimento.
+
+*** Test Cases ***
 Deve logar com sucesso
     
     ${falcao}     Get Fixtures    falcao
     
-    Start App
+    Login With Student Id        ${falcao}[student][id]
+    Wait Until Page Contains     Olá, ${falcao}[student][name]!
 
-    Input Text    xpath=//android.widget.EditText[@text="Informe o endereço ip da api"]    ${API_URL}
-    Input Text    xpath=//android.widget.EditText[@text="Informe seu código de acesso"]    ${falcao}[student][id]
+Código de aluno incorreto
     
-    Click Text    Entrar 
+    Login With Student Id            99999999
+    Wait Until Page Contains         ${error_401}        10
+    
+Código de aluno negativo
+    
+    Login With Student Id            -1
+    Wait Until Page Contains         ${error_401}        10 
 
-    Wait Until Page Contains    Olá, ${falcao}[student][name]!
+Código de aluno alfanumérico
+    
+    Login With Student Id            abc123
+    Wait Until Page Contains         ${error_401}        10      
 
-    Finish App
-       
+Código de aluno não informado
+    Login With Student Id            ${EMPTY} 
+    Wait Until Page Contains         Por favor informe o seu código de acesso!
+
+
+# Por favor informe endereço da API!
+
 
 
     

@@ -4,8 +4,13 @@ Documentation        Arquivo principal
 Library    AppiumLibrary
 Library    JSONLibrary
 
-*** Variables ***
-${API_URL}        http://192.168.0.10:3333
+Resource    screens/login.resource
+
+Resource    services/sessions.resource
+Resource    services/student.resource
+
+Resource    database.resource
+
 
 *** Keywords ***
 Start App
@@ -18,7 +23,7 @@ Start App
     ...                 udid=emulator-5554
     ...                 autoGrantPermissions=true
 
-    Wait Until Page Contains    Informe seu código de acesso    
+    Wait Until Page Contains    Informe seu código de acesso        60        
 
 Finish App
     Capture Page Screenshot

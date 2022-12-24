@@ -1,0 +1,12 @@
+{
+    "student":{
+        "name": "Josemar Trindade",
+        "email": "josemar.trindade@smartbit.com",
+        "age": 38,
+        "feet_tall": 1.70,
+        "weight": 80
+    },
+    "enroll":{
+        "plan": "Smart"
+    }
+}
